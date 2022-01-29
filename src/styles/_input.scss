@@ -1,0 +1,22 @@
+input, select {
+    padding: 8px;
+    color: #1A1A1A;
+    border-radius: 0; 
+    border: 1px solid #d3d3d3;
+    outline: 0;
+
+    // Focus State
+    &:focus {
+        color: #f8b300;
+        border: 1px solid #f8b300;
+    }
+}
+
+select {
+    appearance: button;
+    option {
+        margin: 3px;
+        color: #1A1A1A;
+        background: #f8b300;
+    }
+}
