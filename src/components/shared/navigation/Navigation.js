@@ -26,10 +26,10 @@ const Navigation = () => {
     // console.log('products: ', products);
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="black" expand="lg" className="shadow" variant="primary">
                 <Container>
                     {/* Navbar Brand */}
-                    <Navbar.Brand href="/">The Automobiles</Navbar.Brand>
+                    <Navbar.Brand href="/" className="text-primary">The Automobiles</Navbar.Brand>
 
                     {/* Navigation Menu Toggler */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

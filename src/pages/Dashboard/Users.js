@@ -11,7 +11,6 @@ const Users = () => {
     const [users, setUsers] = useState([])  // Product List.
     
     useEffect( () => {
-        console.log("Token: ", localStorage.getItem('_token'))
         /**
          * Product Parser.
          */
@@ -37,36 +36,36 @@ const Users = () => {
         } else { 
             setLoading(false)
         }
-    })
+    }, [])
         
     return (
         <>
-            {(users.length <= 0 && loading === true) && (<Card><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
-            {(users.length <= 0 && loading === false) && (<Card><Card.Body><Card.Text>No user found</Card.Text></Card.Body></Card>)}
+            {(users.length <= 0 && loading === true) && (<Card bg="black" text="primary"><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
+            {(users.length <= 0 && loading === false) && (<Card bg="black" text="primary"><Card.Body><Card.Text>No user found</Card.Text></Card.Body></Card>)}
             {(users.length > 0 && loading === false) && (
-                <Card>
-                    <Card.Header>
-                        <Card.Title>Users</Card.Title>
+                <Card className="border-0 shadow">
+                    <Card.Header className="bg-black text-primary">
+                        <Card.Title className="pt-2 fs-4">Users</Card.Title>
                     </Card.Header>
-                    <Card.Body>
+                    <Card.Body className="p-0">
                         <Table hover>
-                            <thead>
+                            <thead className="border-bottom-1">
                                 <tr>
-                                    <th>#</th>
+                                    <th className="ps-3">#</th>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th className="text-end pe-3">Email</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="border-top-0">
                                 {users && users.map((user, i) => (
                                     <tr key={user?._id}>
-                                        <td>{++i}</td>
+                                        <td className="ps-3">{++i}</td>
                                         <td>{`${user?.img}`}</td>
                                         <td>
                                             {user?.displayName}
                                         </td>
-                                        <td>{user?.email}</td>
+                                        <td className="text-end pe-3">{user?.email}</td>
                                     </tr>
                                 ))}
                                     

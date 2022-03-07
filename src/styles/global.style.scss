@@ -95,9 +95,38 @@ footer {
   }
 }
 
+.as_page {
+  min-height: calc(100vh - 58px);
+  height: auto;
+}
+@media screen and (min-width: 1024px) {
+  .as_page {
+    min-height: calc(100vh - 420px);
+    height: auto;
+  }
+}
+
+
+
 // Home Page 
 .as_home_top_cat {
   .as_cat_cart {
     background: #F9F9F9;
   }
 }
+
+// Dashboard
+.dashboard {
+  background: #fafafa;
+}
+
+.am_dashboard_sidebar {
+  background: transparent; 
+  .list-group-item {
+    padding-top: 4px;
+    padding-left: 0;
+    background: transparent;
+    border: none;
+  }
+}
+

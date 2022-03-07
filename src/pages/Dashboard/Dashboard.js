@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import DashboardSideMenu from '../../components/dashboard/DashboardSideMenu';
+import DashboardHeader from '../../components/dashboard/DashboardHeader/DashboardHeader';
 import Layout from '../../components/shared/layout/Layout';
 import useAuth from '../../hooks/useAuth';
 
@@ -26,19 +27,22 @@ const Dashboard = () => {
             {!isLoading && (
                 
                 <Layout className='dashboard'>
-                    <div className="--dashboard-viewport py-4">
+
+                    <DashboardHeader />
+                    
+                    <div className="--dashboard-dashboard py-5 ">
                         <Container>
                             <Row>
-                                <Col as="aside" lg={3} md={3} sm={12}>
+                                <Col as="aside" lg={2} md={2} sm={12}>
                                     <DashboardSideMenu role={role} />
                                 </Col>
-                                <Col lg={9} md={9} sm={12}>
+                                <Col lg={10} md={10} sm={12}>
 
-                                    {user?.displayName && (
+                                    {/* {user?.displayName && (
                                         <div className='p-4'>
                                             <h1>Hi {user?.displayName}</h1>
                                         </div>
-                                    )}
+                                    )} */}
                                     
                                     <Outlet />
                                 </Col>

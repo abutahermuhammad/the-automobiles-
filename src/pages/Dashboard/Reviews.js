@@ -40,16 +40,15 @@ const Reviews = () => {
             setLoading(false)
             setTestimonials(data.data)
         })
-    }, [role])
+    }, [handleClose])
 
     /**
      * Adding new review to the database.
      */
-    const addReview = (values) => { 
-        console.log(values)
+    const addReview = (values) => {
         setIsLoading(true)
         fetch(`${process.env.REACT_APP_API_URI}/review`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('_token')}`
@@ -59,31 +58,48 @@ const Reviews = () => {
         .then(res=> res.json())
         .then(data => {
             if (data.status === 200) {
-                setIsLoading(false)
-                setShow(false)
-                setSuccess(true)
+                setIsLoading(false);
+                setShow(false);
+                setSuccess(true);
             } else {
-                setIsLoading(false)
-                setShow(false)
-                setError(true)
+                setIsLoading(false);
+                setShow(false);
+                setError(true);
             }
         })
     }
         
     return (
         <>
-            {(testimonials.length <= 0 && loading === true) && (<Card><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
-            
-            {(testimonials.length <= 0 && loading === false) && (
-                <Card>
+            {(testimonials.length <= 0 && loading === true) && (
+                <Card bg="black" text="primary">
+
                     <Card.Header>
                         <Stack direction="horizontal">
                             <Card.Title>Reviews</Card.Title>
 
-                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-dark" size="sm" >Add new</Button>
+                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
                         </Stack>
                     </Card.Header>
-                    <Card.Body>
+
+                    <Card.Body className="bg-primary text-black">
+                        <Card.Text>Loading...</Card.Text>
+                    </Card.Body>
+
+                </Card>
+            )}
+            
+            {(testimonials.length <= 0 && loading === false) && (
+                <Card bg="black" text="primary"> 
+                    <Card.Header>
+                        <Stack direction="horizontal">
+                            <Card.Title>Reviews</Card.Title>
+
+                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
+                        </Stack>
+                    </Card.Header>
+                    
+                    <Card.Body className="bg-primary text-black">
                         <Card.Text>No review found</Card.Text>
                     </Card.Body>
                 </Card>
@@ -91,15 +107,17 @@ const Reviews = () => {
             
             {(testimonials.length > 0 && loading === false) && (
                 <>
-                    <Card>
-                        <Card.Header>
-                            <Stack direction="horizontal">
-                                <Card.Title>Reviews</Card.Title>
+                    <Card className="border-0 shadow">
 
-                                <Button className="ms-auto" onClick={() => handleShow()} variant="outline-dark" size="sm" >Add new</Button>
+                        <Card.Header className="bg-black text-primary">
+                            <Stack direction="horizontal">
+                                <Card.Title className="pt-2 fs-4">Reviews</Card.Title>
+
+                                <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
                             </Stack>
                         </Card.Header>
-                        <Card.Body>
+
+                        <Card.Body className="p-0">
                             
                             {/* Success Alert */}
                             <Alert className="mb-4" show={success} variant="success">
@@ -110,17 +128,18 @@ const Reviews = () => {
                             </Alert>
 
                             <Table hover>
-                                <thead>
+                                <thead className="border-bottom-1">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Statement</th>
+                                        <th className="ps-3">#</th>
+                                        <th className="text-end pe-3">Statement</th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
                                     {testimonials && testimonials.map((testimonial, i) => (
                                         <tr key={testimonial?._id}>
-                                            <td>{++i}</td>
-                                            <td>{testimonial?.statement}</td>
+                                            <td className="ps-3">{++i}</td>
+                                            <td className="text-end pe-3">{testimonial?.statement}</td>
                                         </tr>
                                     ))}
 

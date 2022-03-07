@@ -5,10 +5,10 @@ import useAuth from '../../hooks/useAuth';
 
 
 const Orders = () => {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const { user, role, loggedin } = useAuth();
+    const [loading, setLoading] = useState(true);  // Component Loading State.
     const [orders, setOrders] = useState([]);  // Product List.
+    const navigate = useNavigate();
+    const { user, role, loggedin } = useAuth();
     
     useEffect( () => {
         /**
@@ -29,7 +29,6 @@ const Orders = () => {
         .then(res=> res.json())
         .then(data=> {
             setOrders(data);
-            console.log('orders: ', data);
             setLoading(false);
         });
     }, [])
@@ -43,31 +42,31 @@ const Orders = () => {
         
     return (
         <>
-            {(loading === true && orders.length <= 0) && (<Card><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
-            {(loading === false && orders.length <= 0) && (<Card><Card.Body><Card.Text>No order found!</Card.Text></Card.Body></Card>)}
+            {(loading === true && orders.length <= 0) && (<Card bg="black" text="primary"><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
+            {(loading === false && orders.length <= 0) && (<Card bg="black" text="primary"><Card.Body><Card.Text>No order found!</Card.Text></Card.Body></Card>)}
             {(orders.length > 0 && loading === false) && (
-                <Card>
+                <Card className="border-0 shadow">
 
-                    <Card.Header>
-                        <Card.Title>Orders</Card.Title>
+                    <Card.Header className="bg-black text-primary">
+                        <Card.Title className="pt-2 fs-4">Orders</Card.Title>
                     </Card.Header>
 
-                    <Card.Body>
-                        <Table hover>
-                            <thead>
+                    <Card.Body className="p-0">
+                        <Table hover >
+                            <thead className="border-bottom-1">
                                 <tr>
-                                    <th>#</th>
+                                    <th className="ps-3">#</th>
                                     <th>Product</th>
                                     <th>date</th>
                                     <th>User</th>
                                     <th>Address</th>
-                                    <th>price</th>
+                                    <th className="text-end pe-3">Price</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="border-top-0">
                                 {orders && orders.map((order, i) => (
                                     <tr key={order?._id}>
-                                        <td>{++i}</td>
+                                        <td className="ps-3">{++i}</td>
                                         <td>
                                             {order?.productTitle}
                                         </td>
@@ -83,7 +82,7 @@ const Orders = () => {
                                             <p className="mb-1">{order?.address}</p>
                                             <p className="mb-1">{order?.address1}</p>
                                         </td>
-                                        <td>{`${order?.productPrice}`}</td>
+                                        <td className="text-end pe-3">{`${order?.productPrice}`}</td>
                                     </tr>
                                 ))}
                                     
@@ -96,4 +95,4 @@ const Orders = () => {
     )
 }
 
-export default Orders
+export default Orders;

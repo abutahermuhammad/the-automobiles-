@@ -16,12 +16,17 @@ const SingleProduct = () => {
 
         fetch(url)
         .then(res=> res.json())
-        .then(data=> console.log(data[0]))
-        .catch(err=> console.log('Single Product: ', err));
+        .then(data=> {
+            setSingleData(data[0]);
+            setLoading(false);
+        })
+        .catch(err=> {
+            console.log('Single Product: ', err);
+            setLoading(false);
+        });
         
-        console.log('productData: ', singleData);
-        setLoading(false);
     }, []);
+    console.log('productData: ', singleData);
 
     return (
         <>
@@ -52,11 +57,11 @@ const SingleProduct = () => {
                                         )}
                                         
                                         <p className='fs-3 mb-1 text-primary'>
-                                            {singleData?.price?.special?singleData?.price?.special:singleData?.price?.reguler}
+                                            {(singleData?.price?.special) ? (singleData?.price?.special) : (singleData?.price?.reguler)}
                                         </p>
                                     </Stack>
 
-                                    {singleData.price.special && (
+                                    {singleData?.price?.special && (
                                         <p className='fs-5'>You have saved ${ (singleData?.price?.reguler - singleData?.price?.special).toFixed(2) }</p>
                                     )}
 
@@ -66,7 +71,7 @@ const SingleProduct = () => {
                                     onClick={() => setToCart(
                                         singleData?._id, 
                                         singleData?.title, 
-                                        singleData?.price?.special?singleData?.price?.special:singleData?.price?.reguler
+                                        (singleData?.price?.special) ? (singleData?.price?.special) :( singleData?.price?.reguler)
                                         )
                                     }
                                     >

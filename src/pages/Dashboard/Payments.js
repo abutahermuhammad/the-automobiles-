@@ -11,12 +11,12 @@ const Payments = () => {
     const { user, role, loggedin } = useAuth()
     const [payments, setPayments] = useState([])  // Testimonials List.
     
-    useEffect( async () => {
+    useEffect( () => {
         /**
          * Products Parser.
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
-        await fetch(`${process.env.REACT_APP_API_URI}/payment`, {
+        fetch(`${process.env.REACT_APP_API_URI}/payment`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,35 +38,36 @@ const Payments = () => {
         
     return (
         <>
-            {(payments.length <= 0 && loading === true) && (<Card><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
-            {(payments.length <= 0 && loading === false) && (<Card><Card.Body><Card.Text>No user found</Card.Text></Card.Body></Card>)}
+            {(payments.length <= 0 && loading === true) && (<Card bg="black" text="primary"><Card.Body><Card.Text>Loading...</Card.Text></Card.Body></Card>)}
+            {(payments.length <= 0 && loading === false) && (<Card bg="black" text="primary"><Card.Body><Card.Text>No user found</Card.Text></Card.Body></Card>)}
             {(payments.length > 0 && loading === false) && (
                 <>
-                    <Card>
-                        <Card.Header>
-                            <Card.Title>Payments</Card.Title>
+                    <Card className="border-0 shadow">
+                        <Card.Header className="bg-black text-primary">
+                            <Card.Title className="pt-2 fs-4">Payments</Card.Title>
                         </Card.Header>
-                        <Card.Body>
+
+                        <Card.Body className="p-0">
                             <Table hover>
-                                <thead>
+                                <thead className="border-bottom-1">
                                     <tr>
-                                        <th>#</th>
+                                        <th className="ps-3">#</th>
                                         <th>date</th>
                                         <th>Card</th>
-                                        <th>Cost</th>
+                                        <th className="text-end pe-3">Cost</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {payments && payments.map((payment, i) => (
                                         <tr key={payment?._id}>
-                                            <td>{++i}</td>
+                                            <td className="ps-3">{++i}</td>
                                             <td>
                                                 <p>{payment?.date}</p>
                                             </td>
                                             <td>
                                                 {payment?.card}
                                             </td>
-                                            <td>{payment?.cost}</td>
+                                            <td className="text-end pe-3">{payment?.cost}</td>
                                         </tr>
                                     ))}
 

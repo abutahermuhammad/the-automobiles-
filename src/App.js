@@ -23,8 +23,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path={`/`} element={<Home />} />
-        <Route exact path={`/shop`} element={<Shop />} />
-        {/* <Route exact path={`/shop/:category/:id/:title`} element={<SingleProduct />} /> */}
+        <Route exact path={`shop`} element={<Shop />} />
+        <Route exact path={`/shop/:category/:id/:title`} element={<SingleProduct />} />
         <Route exact path={`/cart`} element={<Cart />} />
         <Route exact path={`/shop/:id`} element={<SingleProduct />} />
         <Route path={`checkout`} element={<RequireAuth><Checkout /></RequireAuth>} />

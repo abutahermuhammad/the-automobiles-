@@ -22,20 +22,19 @@ const Products = () => {
         if (!user.email || loggedin === false) {
             navigate('/login')
         }
-    })
+    }, [])
 
     useEffect( () => {
         /**
          * Products Parser.
          */
-        // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
         fetch(`${process.env.REACT_APP_API_URI}/product`)
         .then(res=> res.json())
         .then(data=> {
             setProducts(data.data)
             setLoading(false)
         })
-    })
+    }, [handleClose])
 
 
     /**
@@ -52,11 +51,10 @@ const Products = () => {
                 special: values.specialPrice
             }
         }
-        console.log(product)
 
-        setIsLoading(true)
+        setIsLoading(true);
         fetch(`${process.env.REACT_APP_API_URI}/product`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('_token')}`
@@ -65,68 +63,71 @@ const Products = () => {
         })
         .then(res=> res.json())
         .then(data => {
-            setIsLoading(false)
-            setShow(false)
+            setIsLoading(false);
+            setShow(false);
             if (data.status === 200) {
-                setSuccess(true)
+                setError(false);
+                setSuccess(true);
             } else {
-                setError(true)
+                setSuccess(false);
+                setError(true);
             }
-        })
+        });
     }
         
     return (
         <>
             {(products.length <= 0 && loading === true) && (
-                <Card>
+                <Card bg="black" text="primary">
                     <Card.Header>
                         <Stack direction="horizontal">
                             <Card.Title>Products</Card.Title>
 
-                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-dark" size="sm" >Add new</Button>
+                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
                         </Stack>
                     </Card.Header>
-                    <Card.Body><Card.Text>Loading...</Card.Text></Card.Body>
+                    <Card.Body className="bg-primary text-black"><Card.Text>Loading...</Card.Text></Card.Body>
                 </Card>
             )}
 
             {(products.length <= 0 && loading === false) && (
-                <Card>
+                <Card bg="black" text="primary"> 
                     <Card.Header>
                         <Stack direction="horizontal">
                             <Card.Title>Products</Card.Title>
 
-                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-dark" size="sm" >Add new</Button>
+                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
                         </Stack>
                     </Card.Header>
-                    <Card.Body><Card.Text>No product found!</Card.Text></Card.Body>
+                    <Card.Body className="bg-primary text-black"><Card.Text>No product found!</Card.Text></Card.Body>
                 </Card>
             )}
 
             {(products.length > 0 && loading === false) && (
-                <Card>
-                    <Card.Header>
+                <Card className="border-0 shadow">
+                    <Card.Header className="bg-black text-primary">
                         <Stack direction="horizontal">
-                            <Card.Title>Products</Card.Title>
+                            <Card.Title className="pt-2 fs-4">Products</Card.Title>
 
-                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-dark" size="sm" >Add new</Button>
+                            <Button className="ms-auto" onClick={() => handleShow()} variant="outline-primary" size="sm" >Add new</Button>
                         </Stack>
                     </Card.Header>
-                    <Card.Body>
+
+                    <Card.Body className="p-0">
                         <Table hover>
-                            <thead>
+                            <thead className="border-bottom-1">
                                 <tr>
-                                    <th>#</th>
+                                    <th className="ps-3">#</th>
                                     <th>Date</th>
                                     <th>Image</th>
                                     <th>Title</th>
-                                    <th>Price</th>
+                                    <th className="text-end pe-3">Price</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="border-top-0">
                                 {products && products.map((product, i) => (
                                     <tr key={product?._id}>
-                                        <td>{++i}</td>
+                                        <td className="ps-3">{++i}</td>
                                         <td>
                                             {`${new Date(product?.timestamp).getDate()}/${new Date(product?.timestamp).getMonth()}/${new Date(product?.timestamp).getFullYear()}`}
                                         </td>
@@ -136,7 +137,7 @@ const Products = () => {
                                         <td>
                                             {product?.title}
                                         </td>
-                                        <td>
+                                        <td className="text-end pe-3">
                                             {`Reguler: ${product?.price.reguler}`}<br/>
                                             {product?.price.special && (
                                                 `Special: $${product?.price.special}`
