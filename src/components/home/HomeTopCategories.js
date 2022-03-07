@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { storeCats } from '../../store/categories.store';
+import { toURLString } from '../../utils/url.utils';
 
 const HomeTopCategories = () => {
     return (
@@ -13,7 +14,7 @@ const HomeTopCategories = () => {
                             <Row>
                                 {storeCats.map(item=> (
                                     <Col key={item?._id} lg={3} md={3} sm={6} xs={6}>
-                                        <Link to={`/categories/${item?.slug}`}>
+                                        <Link to={`/shop/${toURLString(item?.title)}`}>
                                             <Card className='as_cat_card as_hvr_bg_primary mb-3 border'>
                                                 <Card.Body>
                                                     <Row className='align-items-center'>

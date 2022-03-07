@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Card, Stack } from 'react-bootstrap';
 import { BsBookmarkHeart } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { toURLString } from '../../../../utils/url.utils';
 
 const CardProduct = ({cartHandler, item}) => {
     return (
@@ -11,7 +13,9 @@ const CardProduct = ({cartHandler, item}) => {
                     
                     {/* <link to={`/shop/${item?.categorie}/${item?._id}`}> */}
                         <Card.Title className='text-center fs-6'>
-                            {item?.title}
+                            <Link to={`/shop/${toURLString(item?.categorie)}/${item._id}/${toURLString(item?.title)}`}>
+                                {item?.title}
+                            </Link>
                         </Card.Title>
                     {/* </link> */}
 

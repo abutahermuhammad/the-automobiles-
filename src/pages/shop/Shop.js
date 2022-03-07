@@ -15,7 +15,7 @@ const Shop = () => {
         fetch(url)
         .then(res=> res.json())
         .then(data=> {
-            setProducts(data);
+            setProducts(data.data);
             setLoading(false);
         });
         

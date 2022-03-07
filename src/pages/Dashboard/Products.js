@@ -29,10 +29,10 @@ const Products = () => {
          * Products Parser.
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
-        fetch(`${process.env.REACT_APP_API_URI}/products`)
+        fetch(`${process.env.REACT_APP_API_URI}/product`)
         .then(res=> res.json())
         .then(data=> {
-            setProducts(data)
+            setProducts(data.data)
             setLoading(false)
         })
     })
@@ -55,7 +55,7 @@ const Products = () => {
         console.log(product)
 
         setIsLoading(true)
-        fetch(`${process.env.REACT_APP_API_URI}/products`, {
+        fetch(`${process.env.REACT_APP_API_URI}/product`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

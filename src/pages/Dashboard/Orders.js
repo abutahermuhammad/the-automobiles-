@@ -5,10 +5,10 @@ import useAuth from '../../hooks/useAuth';
 
 
 const Orders = () => {
-    const navigate = useNavigate()
-    const [loading, setLoading] = useState(true)
-    const { user, role, loggedin } = useAuth()
-    const [orders, setOrders] = useState([])  // Product List.
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const { user, role, loggedin } = useAuth();
+    const [orders, setOrders] = useState([]);  // Product List.
     
     useEffect( () => {
         /**
@@ -16,11 +16,11 @@ const Orders = () => {
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
         const url = (role === 'admin') 
-            ? `${process.env.REACT_APP_API_URI}/orders`
-            : `${process.env.REACT_APP_API_URI}/orders?email=${user?.email}`
+            ? `${process.env.REACT_APP_API_URI}/order`
+            : `${process.env.REACT_APP_API_URI}/order?email=${user?.email}`
 
         fetch(url, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('_token')}`
@@ -28,9 +28,10 @@ const Orders = () => {
         })
         .then(res=> res.json())
         .then(data=> {
-            setOrders(data)
-            setLoading(false)
-        })
+            setOrders(data);
+            console.log('orders: ', data);
+            setLoading(false);
+        });
     }, [])
 
     useEffect(() => { 
@@ -46,9 +47,11 @@ const Orders = () => {
             {(loading === false && orders.length <= 0) && (<Card><Card.Body><Card.Text>No order found!</Card.Text></Card.Body></Card>)}
             {(orders.length > 0 && loading === false) && (
                 <Card>
+
                     <Card.Header>
                         <Card.Title>Orders</Card.Title>
                     </Card.Header>
+
                     <Card.Body>
                         <Table hover>
                             <thead>

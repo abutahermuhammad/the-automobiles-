@@ -31,14 +31,14 @@ const Reviews = () => {
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
         const url = (role === 'admin') 
-            ? `${process.env.REACT_APP_API_URI}/reviews`
-            : `${process.env.REACT_APP_API_URI}/reviews?email=${user?.email}`
+            ? `${process.env.REACT_APP_API_URI}/review`
+            : `${process.env.REACT_APP_API_URI}/review?email=${user?.email}`
 
         fetch(url)
         .then(res=> res.json())
         .then(data=> {
             setLoading(false)
-            setTestimonials(data)
+            setTestimonials(data.data)
         })
     }, [role])
 
@@ -48,7 +48,7 @@ const Reviews = () => {
     const addReview = (values) => { 
         console.log(values)
         setIsLoading(true)
-        fetch(`${process.env.REACT_APP_API_URI}/reviews`, {
+        fetch(`${process.env.REACT_APP_API_URI}/review`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

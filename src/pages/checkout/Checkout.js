@@ -32,14 +32,14 @@ const Checkout = () => {
     })
 
     const checkoutFormHandler = (values) => {
-        const url = `${process.env.REACT_APP_API_URI}/orders`;
+        const url = `${process.env.REACT_APP_API_URI}/order`;
         const data = {
             date: new Date(),
             ...values
         }
 
         fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('_token')}`,
@@ -48,10 +48,14 @@ const Checkout = () => {
         })
         .then(res=> res.json())
         .then(data=> {
-            if(data?.acknowledged === true) setSuccess(true)
-            if(!data.status) setError(true)
+            setError(false);
+            if(data?.acknowledged === true) setSuccess(true);
+            if(!data.status) setError(true);
         })
-        .catch(()=> setError(true));
+        .catch(()=> {
+            setSuccess(false);
+            setError(true);
+        });
     }
 
 
@@ -67,7 +71,7 @@ const Checkout = () => {
                                 <Col lg={6} md={6} sm={12}>
                                     {/* Success Alert */}
                                     <Alert className="mb-4" show={success} variant="success">
-                                        Order successfull
+                                        Order successful
                                     </Alert>
                                     
                                     {/* Error Alert */}

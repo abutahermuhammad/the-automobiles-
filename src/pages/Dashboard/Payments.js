@@ -16,7 +16,7 @@ const Payments = () => {
          * Products Parser.
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
-        await fetch(`${process.env.REACT_APP_API_URI}/payments`, {
+        await fetch(`${process.env.REACT_APP_API_URI}/payment`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -12,12 +12,11 @@ const SingleProduct = () => {
     const {setToCart} = useCart();
 
     useEffect(()=> {
-        // let url = `${process.env.REACT_APP_API_URI}/products?id=${id}`;
-        let url = `https://theautomobile.herokuapp.com/products?id=${id}`;
+        let url = `${process.env.REACT_APP_API_URI}/product/${id}`;
 
         fetch(url)
         .then(res=> res.json())
-        .then(data=> setSingleData(data[0]))
+        .then(data=> console.log(data[0]))
         .catch(err=> console.log('Single Product: ', err));
         
         console.log('productData: ', singleData);
@@ -31,12 +30,14 @@ const SingleProduct = () => {
             <Layout className="as_page_single_product" >
                 <section className=''>
                     <Container className='mt-5 pb-5'>
-                        <h1>{singleData.title}</h1>
+
+                        <h1>{singleData?.title}</h1>
+
                         <Row>
                             {/* Thumbnail */}
                             <Col lg={5} md={5} sm={12} xs={12}>
                                 <div className=''>
-                                    <img className='w-100' src={singleData.image} alt=''/>
+                                    <img className='w-100' src={singleData?.image} alt=''/>
                                 </div>
                             </Col>
 
@@ -44,28 +45,28 @@ const SingleProduct = () => {
                             <Col lg={7} md={7} sm={12} xs={12}>
                                 <div className=''>
                                     <Stack direction='horizontal' gap={3}>
-                                        {singleData.price.special && (
+                                        {singleData?.price?.special && (
                                             <p className='fs-3 mb-1 text-muted'>
-                                                <del>{singleData.price.reguler}</del>
+                                                <del>{singleData?.price?.reguler}</del>
                                             </p>
                                         )}
                                         
                                         <p className='fs-3 mb-1 text-primary'>
-                                            {singleData.price.special?singleData.price.special:singleData.price.reguler}
+                                            {singleData?.price?.special?singleData?.price?.special:singleData?.price?.reguler}
                                         </p>
                                     </Stack>
 
                                     {singleData.price.special && (
-                                        <p className='fs-5'>You have saved ${ (singleData.price.reguler - singleData.price.special).toFixed(2) }</p>
+                                        <p className='fs-5'>You have saved ${ (singleData?.price?.reguler - singleData?.price?.special).toFixed(2) }</p>
                                     )}
 
                                     <p>{SingleProduct?.description}</p>
 
                                     <Button 
                                     onClick={() => setToCart(
-                                        singleData._id, 
-                                        singleData.title, 
-                                        singleData.price.special?singleData.price.special:singleData.price.reguler
+                                        singleData?._id, 
+                                        singleData?.title, 
+                                        singleData?.price?.special?singleData?.price?.special:singleData?.price?.reguler
                                         )
                                     }
                                     >

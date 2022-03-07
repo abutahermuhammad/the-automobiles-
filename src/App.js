@@ -24,10 +24,11 @@ function App() {
       <Routes>
         <Route exact path={`/`} element={<Home />} />
         <Route exact path={`/shop`} element={<Shop />} />
+        {/* <Route exact path={`/shop/:category/:id/:title`} element={<SingleProduct />} /> */}
         <Route exact path={`/cart`} element={<Cart />} />
         <Route exact path={`/shop/:id`} element={<SingleProduct />} />
         <Route path={`checkout`} element={<RequireAuth><Checkout /></RequireAuth>} />
-        <Route exect path={`/dashboard`} element={<RequireAuth><Dashboard /></RequireAuth>} >
+        <Route exact path={`/dashboard`} element={<RequireAuth><Dashboard /></RequireAuth>} >
           <Route exact path={`orders`} element={<RequireAuth><Orders /></RequireAuth>} />
           <Route exact path={`products`} element={<RequireAuth><Products /></RequireAuth>} />
           <Route exact path={`reviews`} element={<RequireAuth><Reviews /></RequireAuth>} />

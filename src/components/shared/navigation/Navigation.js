@@ -6,22 +6,24 @@ import useAuth from '../../../hooks/useAuth';
 import NavCartData from "./NavCartData";
 import useCart from "../../../hooks/useCart";
 import { useEffect, useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
+import { toURLString } from "../../../utils/url.utils";
 
 
 const Navigation = () => {
-    const { loggedin, user,signoutHandler } = useAuth();
+    const { loggedin, user, signoutHandler } = useAuth();
     const { clearCart } = useCart();
     const [products, setProducts] = useState([]);
 
     useEffect(()=> {
-        let url = `${process.env.REACT_APP_API_URI}/products`;
+        let url = `${process.env.REACT_APP_API_URI}/product`;
 
         fetch(url)
         .then(res=> res.json())
-        .then(data=> setProducts(data));
-        console.log('products: ', products);
+        .then(data=> setProducts(data.data));
     }, [])
 
+    // console.log('products: ', products);
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -38,8 +40,8 @@ const Navigation = () => {
                         <Nav className="mx-auto">
                             <Nav.Link href="shop">Shop</Nav.Link>
                             <NavDropdown title="Categories" id="basic-nav-dropdown">
-                                {products && products.map(item=> (
-                                    <NavDropdown.Item key={`NMC${item._id}`} href={`/category/${(item?.categorie).split(' ').join('-')}`}>{item?.categorie}</NavDropdown.Item>
+                                {products && products?.map(item=> (
+                                    <NavDropdown.Item key={`NMC${item._id}`} href={`/shop/${toURLString(item?.categorie)}`}>{item?.categorie}</NavDropdown.Item>
                                 ))}
                                 
                             </NavDropdown>
@@ -59,7 +61,7 @@ const Navigation = () => {
                                 <NavDropdown 
                                     title={ (user?.photoURL) ? 
                                         <img src={user?.photoURL} alt={user.displayName} style={{borderRadius: 50}} width={26} height={26} /> 
-                                        : ''} 
+                                        : (<FaUserAlt/>)} 
                                     id="basic-nav-dropdown"
                                 >
                                     <NavDropdown.Item>

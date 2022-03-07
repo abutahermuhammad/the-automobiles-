@@ -10,13 +10,13 @@ const Users = () => {
     const { user, role, loggedin } = useAuth()
     const [users, setUsers] = useState([])  // Product List.
     
-    useEffect( async () => {
+    useEffect( () => {
         console.log("Token: ", localStorage.getItem('_token'))
         /**
          * Product Parser.
          */
         // fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/products`)
-        await fetch(`${process.env.REACT_APP_API_URI}/users`, {
+        fetch(`${process.env.REACT_APP_API_URI}/user`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

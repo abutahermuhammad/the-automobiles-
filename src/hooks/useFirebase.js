@@ -131,7 +131,7 @@ const useFirebase = () => {
             role: 'visitor'
         }
 
-        fetch(`${process.env.REACT_APP_API_URI}/users`, {
+        fetch(`${process.env.REACT_APP_API_URI}/user`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -149,7 +149,7 @@ const useFirebase = () => {
      */
      const userRoleUpdate = (email) => { 
         console.log(email)
-        fetch(`${process.env.REACT_APP_API_URI}/users?email=${email}&limit=1`, {
+        fetch(`${process.env.REACT_APP_API_URI}/user?email=${email}&limit=1`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
