@@ -13,7 +13,7 @@ const HomeTopCategories = () => {
                             <Row>
                                 {storeCats.map(item=> (
                                     <Col key={item?._id} lg={3} md={3} sm={6} xs={6}>
-                                        <Link to={item?.url}>
+                                        <Link to={`/categories/${item?.slug}`}>
                                             <Card className='as_cat_card as_hvr_bg_primary mb-3 border'>
                                                 <Card.Body>
                                                     <Row className='align-items-center'>

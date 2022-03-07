@@ -27,7 +27,7 @@ const Navigation = () => {
             <Navbar bg="light" expand="lg">
                 <Container>
                     {/* Navbar Brand */}
-                    <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="/">The Automobiles</Navbar.Brand>
 
                     {/* Navigation Menu Toggler */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
