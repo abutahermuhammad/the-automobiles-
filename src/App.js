@@ -29,6 +29,7 @@ function App() {
         <Route exact path={`/shop/:id`} element={<SingleProduct />} />
         <Route path={`checkout`} element={<RequireAuth><Checkout /></RequireAuth>} />
         <Route exact path={`/dashboard`} element={<RequireAuth><Dashboard /></RequireAuth>} >
+          {/* <Route exact path={`analytics`} element={<RequireAuth><Orders /></RequireAuth>} /> */}
           <Route exact path={`orders`} element={<RequireAuth><Orders /></RequireAuth>} />
           <Route exact path={`products`} element={<RequireAuth><Products /></RequireAuth>} />
           <Route exact path={`reviews`} element={<RequireAuth><Reviews /></RequireAuth>} />

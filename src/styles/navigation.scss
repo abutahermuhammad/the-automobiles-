@@ -1,0 +1,20 @@
+.am_navigation {
+    .am_navigation_primary {
+        padding: 12px 0;
+        .navbar-brand {
+            font-weight: 700;
+        }
+
+        .nav-item {
+            &.dropdown {
+                .dropdown-toggle {
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    .am_navigation_secondary {}
+}

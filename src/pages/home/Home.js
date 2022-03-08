@@ -1,10 +1,10 @@
 import React from 'react';
-import HomeBanner from '../../components/home/HomeBanner';
-import HomeTopCategories from '../../components/home/HomeTopCategories';
-import HomeWhyShopWith from '../../components/home/HomeWhyShopWith';
-import CardProduct4x2 from '../../components/shared/card/CardProduct4x2/CardProduct4x2';
-import ImageGrid4x4 from '../../components/shared/card/ImageGrid4x4/ImageGrid4x4';
-import Layout from '../../components/shared/layout/Layout';
+import HomeBanner from '../../views/pages/home/HomeBanner';
+import HomeTopCategories from '../../views/pages/home/HomeTopCategories';
+import HomeWhyShopWith from '../../views/pages/home/HomeWhyShopWith';
+import CardProduct4x2 from '../../views/shared/card/CardProduct4x2/CardProduct4x2';
+import ImageGrid4x4 from '../../views/shared/card/ImageGrid4x4/ImageGrid4x4';
+import Layout from '../../views/shared/layout/Layout';
 import { storeBrands } from '../../store/brand.store';
 import { storeProducts } from '../../store/products.store';
 import useCart from '../../hooks/useCart';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row, Stack, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../../components/shared/layout/Layout';
+import Layout from '../../views/shared/layout/Layout';
 import useCart from '../../hooks/useCart';
 
 const Cart = () => {

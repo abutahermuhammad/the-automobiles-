@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row, Stack } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../../components/shared/layout/Layout';
+import Layout from '../../views/shared/layout/Layout';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {

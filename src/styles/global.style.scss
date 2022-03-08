@@ -1,13 +1,13 @@
 @use './input';
 @use './button';
 @use './typofography';
+@import './navigation.scss';
 
 // Modify 
 $primary: #f8b300;
 $font-family-sans-serif:'Noto Sans', Helvetica Neue, sans-serif;
 $border-color: #e0e0e0;
-$border-radius: 3px;
-
+$border-radius: 5px;
 @import "~bootstrap/scss/bootstrap";
 
 html,

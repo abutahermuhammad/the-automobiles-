@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { storeCats } from '../../store/categories.store';
+import { storeCats } from '../../../store/categories.store';
 
 const HomeWhyShopWith = () => {
     return (

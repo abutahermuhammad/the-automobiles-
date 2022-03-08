@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import DashboardSideMenu from '../../components/dashboard/DashboardSideMenu';
-import DashboardHeader from '../../components/dashboard/DashboardHeader/DashboardHeader';
-import Layout from '../../components/shared/layout/Layout';
+import DashboardHeader  from '../../views/pages/dashboard/DashboardHeader/DashboardHeader';
+import DashboardSideMenu from '../../views/pages/dashboard/DashboardSideMenu';
+import Layout from '../../views/shared/layout/Layout';
 import useAuth from '../../hooks/useAuth';
 
 

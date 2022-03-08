@@ -43,6 +43,7 @@ const Cart = () => {
             
         }
     }, []);
+
     useEffect(()=> {
         updateTotal();
     }, [subTotal]);
@@ -58,10 +59,21 @@ const Cart = () => {
 
         if (cart.length > 0 ) {
             for (var n = 0; n < cart.length; n++) {
-                if (cart[n]._id === id) {
-                    temp = true;
-                } else {
-                    temp = false;
+                // if (cart[n]._id === id) {
+                //     temp = true;
+                // } else {
+                //     temp = false;
+                // }
+                switch (cart[n]._id) {
+                    case id:
+                        temp = true;
+
+                        break;
+                
+                    default:
+                        temp = false;
+                        
+                        break;
                 }
             }
         }

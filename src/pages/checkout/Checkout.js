@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import { Col, Container, Row, Button, Stack, Alert, Card, Table } from 'react-bootstrap'
 import useAuth from '../../hooks/useAuth';
 import useOrder from '../../hooks/useOrder'
-import Layout from '../../components/shared/layout/Layout';
+import Layout from '../../views/shared/layout/Layout';
 import useCart from '../../hooks/useCart';
 
 

@@ -3,7 +3,6 @@ import React from 'react';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { storeFooter } from '../../../store/footer.store';
-// import { storeSocial } from '../../../store/social.store';
 
 const Footer = () => {
     return (

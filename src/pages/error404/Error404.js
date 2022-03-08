@@ -1,6 +1,6 @@
 import { Button, Container } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
-import Layout from "../../components/shared/layout/Layout"
+import Layout from "../../views/shared/layout/Layout"
 
 const Error404 = () => {
     const navigate = useNavigate();

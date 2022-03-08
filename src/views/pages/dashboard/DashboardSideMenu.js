@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ListGroup } from 'react-bootstrap'
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../../hooks/useAuth';
 import { FaListAlt, FaShoppingCart, FaCoffee, FaCreditCard } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
 

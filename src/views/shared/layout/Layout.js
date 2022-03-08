@@ -5,9 +5,8 @@ import Navigation from '../navigation/Navigation';
 const Layout = ({className, children}) => {
     return (
         <>
-            <header>
-                <Navigation />
-            </header>
+            
+            <Navigation />
 
             <main className={`as_page ${className && className}`}>
                 {children}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import CardProduct4x2 from '../../components/shared/card/CardProduct4x2/CardProduct4x2';
-import Layout from '../../components/shared/layout/Layout';
+import CardProduct4x2 from '../../views/shared/card/CardProduct4x2/CardProduct4x2';
+import Layout from '../../views/shared/layout/Layout';
 import useCart from '../../hooks/useCart';
 
 const Shop = () => {
