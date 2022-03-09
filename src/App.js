@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Home from './pages/home/Home'
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import TrackOrder from './pages/TrackOrder/TrackOrder';
 import Shop from './pages/shop/Shop';
 import Orders from './pages/Dashboard/Orders';
 import Users from './pages/Dashboard/Users';
@@ -14,6 +15,7 @@ import SingleProduct from './pages/SingleProduct/SingleProduct';
 import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
 import Error404 from './pages/error404/Error404';
+import TrackOrderDetails from './pages/TrackOrderDetails/TrackOrderDetails';
 // import SingleProduct from './pages/Shop/SingleProduct';
 
 
@@ -38,6 +40,8 @@ function App() {
         </Route>
         <Route exact path={`/login`} element={<Login />} />
         <Route exact path={`/register`} element={<Register />} />
+        <Route exact path={`/track-order`} element={<TrackOrder />} />
+        <Route exact path={`/track-order-details/:id/:email`} element={<TrackOrderDetails />} />
         <Route exact path={`*`} element={<Error404 />} />
       </Routes>
     </div>

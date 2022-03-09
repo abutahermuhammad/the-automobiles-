@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row, Stack } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../views/shared/layout/Layout';
 import useAuth from '../../hooks/useAuth';
@@ -33,16 +33,19 @@ const Register = () => {
         <>
             {loading && (<Layout><Container className="py-5"><p>Loading...</p></Container></Layout>)}
             {!loading && (
-                <Layout className="as_page_register" >
-                    <section className='as_register'>
-                        <Container>
-                            <h1 className='mb-4'>Create an Account</h1>
+                <Layout className="am_page_register" >
+                    <section className='am_register'>
+                        {/* Page Header */}
+                        <Container className='py-5'>
+                            <h1 className='ms-5 mb-0'>Create an Account</h1>
                         </Container>
+
+                        {/* Page Body */}
                         <Container>
                             <Row g={4} className="justify-content-between">
                                 {/* Login Form Area */}
-                                <Col lg={6} md={6} sm={12} xs={12}>
-                                    <div className='ps_register_left mb-5'>
+                                <Col lg={6} md={6} sm={12} xs={12} className="mb-5">
+                                    <div className='am_register-left'>
                                         <Formik
                                         initialValues={{displayName: "", email: "", password: ""}}
                                         validate={values => {
@@ -131,17 +134,16 @@ const Register = () => {
                                 </Col>
 
                                 {/* Login Information Area */}
-                                <Col lg={6} md={6} sm={12} xs={12}>
-                                    <div className='ps_register_right'>
+                                <Col lg={6} md={6} sm={12} xs={12} className="mb-5">
+                                    <div className='am_register-right'>
                                         <Card>
                                             <Card.Body>
                                                 <h3 className='mb-2'>Old Customers</h3>
                                                 <Card.Text className='mb-4'>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</Card.Text>
 
-                                                <Button href={`/login`}>LOG IN</Button>
+                                                <Link className="btn btn-primary" to={`/login`}>LOG IN</Link>
                                             </Card.Body>
                                         </Card>
-                                        
                                     </div>
                                 </Col>
                             </Row>

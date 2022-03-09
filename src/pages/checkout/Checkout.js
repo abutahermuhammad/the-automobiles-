@@ -63,12 +63,17 @@ const Checkout = () => {
         <>
             {loading && (<Layout><Container className="py-5"><p>Loading...</p></Container></Layout>)}
             {!loading && (
-                <Layout className="checkout pt-5 pb-5">
-                    <section className='fg-checkout'>
+                <Layout className="am_page_checkout">
+                    <section className='am-checkout'>
+                        
+                        {/* Page Header */}
+                        <Container className='py-5'>
+                            <h1 className='m-0'>Checkout</h1>
+                        </Container>
+
                         <Container>
-                            <h1 className='mb-4'>Checkout</h1>
                             <Row className="justify-content-between">
-                                <Col lg={6} md={6} sm={12}>
+                                <Col lg={6} md={6} sm={12} className="mb-5">
                                     {/* Success Alert */}
                                     <Alert className="mb-4" show={success} variant="success">
                                         Order successful
@@ -152,25 +157,26 @@ const Checkout = () => {
                                     </Formik>
                                 </Col>
 
-                                <Col lg={5} md={5} sm={12}>
+                                <Col lg={5} md={5} sm={12} className="mb-5">
                                     <Card className='shadow'>
-                                        <Card.Header>
+                                        <Card.Header className='bg-dark text-primary'>
                                             <Card.Title className='mt-2'>Cart</Card.Title>
                                         </Card.Header>
-                                        <Card.Body>
+
+                                        <Card.Body className='bg-primary text-dark p-0'>
                                             <Table>
                                                 <tbody>
                                                     {cart.map(item=> (
                                                         <tr>
                                                             <td>{item.title}</td>
-                                                            <td className='text-primary'>{item.price}</td>
+                                                            <td className='text-dark pw-bold'>${item.price}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
                                             </Table>
-                                            
                                         </Card.Body>
-                                        <Card.Footer>
+
+                                        <Card.Footer className='bg-dark text-primary'>
                                             <p className='mb-0 fw-bold'>Total: <span className='text-primary'>${total}</span></p>
                                         </Card.Footer>
                                         

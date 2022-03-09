@@ -6,7 +6,7 @@ const HomeBanner = ({src, alt, url}) => {
     return (
         <>
             <section className='as_sec as_home_banner'>
-                <Container className=''>
+                <Container className="container-md">
                     {/* <Link to={url}> */}
                         <img className='w-100' src={src} alt={alt} />
                     {/* </Link> */}

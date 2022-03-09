@@ -8,7 +8,7 @@ $primary: #f8b300;
 $font-family-sans-serif:'Noto Sans', Helvetica Neue, sans-serif;
 $border-color: #e0e0e0;
 $border-radius: 5px;
-$navbar-dark-toggler-border-color:  rgba($primary, .1);
+$navbar-dark-toggler-border-color:  $primary;
 $navbar-light-toggler-icon-bg: url("http://localhost:3000/icons/menu.svg");
 @import "~bootstrap/scss/bootstrap";
 
@@ -59,10 +59,13 @@ footer {
 }
 
 
-// Login Page  
-.as_page_login, .as_page_register {
-  .as_register { 
-    padding: 60px 0;
+/**
+ * Register Page
+ * Login Page 
+ * Order Tracking Page
+ */ 
+.am_page_login, .am_page_register, .am_page_track-order{
+  .am_register, .am_login, .am_track-order {
     .card {
       border: 0 !important;
       .card-body {
@@ -70,32 +73,17 @@ footer {
         background: #f8f8f8 !important;
       }
     }
-    .ps_register_left {
+    .am_register-left, .am_login-left, .am_track-left {
+      height: 100%;
       padding: 50px;
       background: #f8f8f8;
     }
-    .ps_register_right {}
+    .am_register-right, .am_login-right, .am_track-right {
+      height: 100%;
+    }
   }
 }
 
-// Register Page  
-.as_page_login {
-  .as_login { 
-    padding: 60px 0;
-    .card {
-      border: 0 !important;
-      .card-body {
-        padding: 50px !important;
-        background: #f8f8f8 !important;
-      }
-    }
-    .ps_login_left {
-      padding: 50px;
-      background: #f8f8f8;
-    }
-    .ps_login_right {}
-  }
-}
 
 .as_page {
   min-height: calc(100vh - 58px);
