@@ -25,6 +25,7 @@ const Cart = () => {
 
     const setLocalStorage = (name, data) => localStorage.setItem(name, JSON.stringify(data));
     const getLocalStorage = (name) => localStorage.getItem(name);
+    console.log('Cart: ', cart)
 
     /**
      * This hook get fired after the page loading finised.
