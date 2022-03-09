@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Table, Image } from 'react-bootstrap'
+import { Container, Row, Col, Card, Table, Image, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap'
 import useAuth from '../../hooks/useAuth'
 
 
@@ -54,18 +54,40 @@ const Users = () => {
                                     <th className="ps-3">#</th>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th className="text-end pe-3">Email</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                    <th className="text-end pe-3"></th>
                                 </tr>
                             </thead>
                             <tbody className="border-top-0">
                                 {users && users.map((user, i) => (
                                     <tr key={user?._id}>
                                         <td className="ps-3">{++i}</td>
-                                        <td>{`${user?.img}`}</td>
+                                        <td>
+                                            <img src={`${user?.photoURL}`} width="45px" />
+                                        </td>
                                         <td>
                                             {user?.displayName}
                                         </td>
-                                        <td className="text-end pe-3">{user?.email}</td>
+                                        <td className="text-start pe-3">{user?.email}</td>
+                                        <td>
+                                            {(user?.role === 'visitor') && (
+                                                <span className="badge rounded-pill bg-success">{user?.role}</span>
+                                            )}
+                                            
+                                            {(user?.role === 'admin') && (
+                                                <span className="badge rounded-pill bg-warning">{user?.role}</span>
+                                            )}
+                                        </td>
+
+                                        <td>
+                                            <DropdownButton variant="outline-dark" size='sm' as={ButtonGroup} title="Dropdown">
+                                                <Dropdown.Item eventKey="1">Make Admin</Dropdown.Item>
+                                                <Dropdown.Item eventKey="1">Make Visitor</Dropdown.Item>
+                                                <Dropdown.Item eventKey="1">Make Editor</Dropdown.Item>
+                                                <Dropdown.Item eventKey="2">Delete Account</Dropdown.Item>
+                                            </DropdownButton>
+                                        </td>
                                     </tr>
                                 ))}
                                     

@@ -1,14 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, Table } from 'react-bootstrap'
+import { ButtonGroup, Card, Dropdown, DropdownButton, Offcanvas, Table } from 'react-bootstrap'
 import useAuth from '../../hooks/useAuth';
 
 
 const Orders = () => {
     const [loading, setLoading] = useState(true);  // Component Loading State.
     const [orders, setOrders] = useState([]);  // Product List.
+    const [show, setShow] = useState(false);  // Canvas State
+    const [canvasData, setCanvasData] = useState({});  // Product List.
     const navigate = useNavigate();
     const { user, role, loggedin } = useAuth();
+    let canvasData1, canvasDataRest;
     
     useEffect( () => {
         /**
@@ -34,11 +37,18 @@ const Orders = () => {
     }, [])
 
     useEffect(() => { 
-
         if (!user.email || loggedin === false) {
             navigate('/login')
         }
     })
+
+    const showOrder = id => {
+        /**
+         * Filtering data from order list for showing into canvas.
+         */
+        setCanvasData(orders.filter(order=> order._id === id)[0]);
+        setShow(true);
+    }
         
     return (
         <>
@@ -55,35 +65,47 @@ const Orders = () => {
                         <Table hover >
                             <thead className="border-bottom-1">
                                 <tr>
-                                    <th className="ps-3">#</th>
-                                    <th>Product</th>
-                                    <th>date</th>
-                                    <th>User</th>
-                                    <th>Address</th>
-                                    <th className="text-end pe-3">Price</th>
+                                    <th className="ps-3"></th>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Total Product</th>
+                                    <th>Status</th>
+                                    <th>Total Price</th>
+                                    <th className="text-end pe-3"></th>
                                 </tr>
                             </thead>
                             <tbody className="border-top-0">
                                 {orders && orders.map((order, i) => (
                                     <tr key={order?._id}>
                                         <td className="ps-3">{++i}</td>
-                                        <td>
-                                            {order?.productTitle}
-                                            {order?._id}
+                                        <td className='fw-bold'>
+                                            <span style={{cursor: 'pointer'}} onClick={ ()=> showOrder(order?._id)}>{(order?._id).toUpperCase()}</span>
                                         </td>
                                         <td>
-                                            {order?.date}
+                                            {`${new Date(order?.date).getDate()}/${new Date(order?.date).getMonth()}/${new Date(order?.date).getFullYear()}`}
                                         </td>
                                         <td>
-                                            <p className="mb-1"><strong>{order?.name}</strong></p>
-                                            <p className="mb-1">{order?.name}</p>
-                                            <p className="mb-1">{order?.phone}</p>
+                                            {(order?.cart).length}
                                         </td>
+
                                         <td>
-                                            <p className="mb-1">{order?.address}</p>
-                                            <p className="mb-1">{order?.address1}</p>
+                                            {((order?.status).toLowerCase() === 'pending') && (
+                                                <span className="badge p-1 rounded-pill bg-warning">{order?.status}</span>
+                                            )}
                                         </td>
-                                        <td className="text-end pe-3">{`${order?.productPrice}`}</td>
+
+                                        <td className='fw-bold'>{`${order?.orderPrice}`} USD</td>
+
+                                        { (role === 'admin') && (                                         
+                                            <td className="text-end pe-3">
+                                                <DropdownButton variant="outline-dark" size='sm' as={ButtonGroup} title="Received">
+                                                    <Dropdown.Item eventKey="1">Process</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="2">Delivery</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="3">Complete</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="4">Cancel</Dropdown.Item>
+                                                </DropdownButton>
+                                            </td>
+                                        )}
                                     </tr>
                                 ))}
                                     
@@ -92,6 +114,75 @@ const Orders = () => {
                     </Card.Body>
                 </Card>
             )}
+
+
+            {/* Offcanvas */}
+            <Offcanvas className="w-75" show={show} placement="end" onHide={()=>setShow(false)}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title className='fs-2'>Order Details</Offcanvas.Title>
+                </Offcanvas.Header>
+
+                <Offcanvas.Body>
+                    <Table className='mb-0'>
+                        <tbody>
+
+                            {/* Order ID */}
+                            <tr>
+                                <th>ID</th>
+                                <th colSpan={2}>: <span className='mark'>{canvasData?._id?.toUpperCase()}</span></th>
+                            </tr>
+
+                            {/* Order Status */}
+                            <tr>
+                                <th>Status</th>
+                                <th colSpan={2}>: <span className='mark'>{canvasData?.status?.toUpperCase()}</span></th>
+                            </tr>
+
+                            {/* Order Placement Date */}
+                            <tr>
+                                <th>Date</th>
+                                <th colSpan={2}>: <span className='mark'>{`${new Date(canvasData?.date).getDate()}/${new Date(canvasData?.date).getMonth()}/${new Date(canvasData?.date).getFullYear()}`}</span></th>
+                            </tr>
+
+                            {/* Customer Name */}
+                            <tr>
+                                <th>Name</th>
+                                <td colSpan={2}>: {canvasData?.name}</td>
+                            </tr>
+
+                            {/* Customer Email */}
+                            <tr>
+                                <th>Phone</th>
+                                <td colSpan={2}>: {canvasData?.phone}</td>
+                            </tr>
+
+                            {/* Customer Email */}
+                            <tr>
+                                <th>Email</th>
+                                <td colSpan={2}>: {canvasData?.email}</td>
+                            </tr>
+                            
+                            {/* Order Cart */}
+                            {canvasData?.cart && canvasData?.cart.map((item, i)=> (
+                                <tr>
+                                    <th>
+                                        {(i === 0) && ("Cart")}
+                                    </th>
+                                    <td>: <span className='fw-bold'>{item?.title}</span> x {item?.quantity}</td>
+                                    <td>${(item?.price * item?.quantity).toFixed(2)}</td>
+                                </tr>
+                            ))}
+
+                            {/* Customer Email */}
+                            <tr>
+                                <th>Total</th>
+                                <td colSpan={2}>: {canvasData?.orderPrice}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </Table>
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     )
 }

@@ -159,7 +159,7 @@ const useFirebase = () => {
         .then(res => res.json())
         .then(data => {
             console.log('roleD', data)
-            if (data[0]?.role == 'admin') {
+            if (data[0]?.role === 'admin') {
                 setRole('admin')
             } else {
                 setRole('visitor');

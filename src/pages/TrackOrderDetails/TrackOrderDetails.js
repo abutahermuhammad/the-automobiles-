@@ -22,8 +22,6 @@ const TrackOrderDetails = () => {
             console.log('data', data)
             setLoading(false);
         });
-        console.log(id, email);
-        console.log(Object.keys(orderDetails).length);
         
         // console.log('products: ', products);
     }, []);
@@ -60,6 +58,7 @@ const TrackOrderDetails = () => {
                         <Container className='ps-5 py-5'>
                             <h1 className='mt-sm-0 mt-md-5 text-break'>Order ID: <span className='mark'>{(orderDetails?._id).toUpperCase()}</span></h1>
                             <p className='fs-3'>Date: <span className='mark'>{orderDetails?.date}</span></p>
+                            <p className='fs-3'>Status: <span className='mark'>{orderDetails?.status}</span></p>
                         </Container>
                         <Container>
                             <Row g={4} className="justify-content-between">

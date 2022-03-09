@@ -13,13 +13,12 @@ const Navigation = () => {
     const { clearCart } = useCart();
     const [products, setProducts] = useState([]);
 
+    let url = `${process.env.REACT_APP_API_URI}/product`;
     useEffect(()=> {
-        let url = `${process.env.REACT_APP_API_URI}/product`;
-
         fetch(url)
         .then(res=> res.json())
         .then(data=> setProducts(data.data));
-    }, [])
+    }, [url])
 
     // console.log('products: ', products);
     return (
