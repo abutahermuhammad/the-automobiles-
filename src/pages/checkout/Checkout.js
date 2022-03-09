@@ -48,8 +48,8 @@ const Checkout = () => {
             body: JSON.stringify(data)
         })
         .then(res=> res.json())
-        .then(async data=> {
-            await clearCart();
+        .then(data=> {
+            clearCart();
             setError(false);
             if(data?.acknowledged === true) navigate(from)
             if(!data.status) setError(true);
