@@ -21,7 +21,7 @@ const Checkout = () => {
         user,
         loggedin,
     } = useAuth()
-    const {cart, total} = useCart();
+    const {cart, clearCart, total} = useCart();
 
     useEffect(() => {
     //     if (user.email && loggedin === true) {
@@ -29,13 +29,14 @@ const Checkout = () => {
     //     } else {
             setLoading(false)
     //     }
-    })
+    });
 
     const checkoutFormHandler = (values) => {
         const url = `${process.env.REACT_APP_API_URI}/order`;
         const data = {
             date: new Date(),
-            ...values
+            ...values,
+            cart
         }
 
         fetch(url, {
@@ -47,7 +48,8 @@ const Checkout = () => {
             body: JSON.stringify(data)
         })
         .then(res=> res.json())
-        .then(data=> {
+        .then(async data=> {
+            await clearCart();
             setError(false);
             if(data?.acknowledged === true) setSuccess(true);
             if(!data.status) setError(true);
