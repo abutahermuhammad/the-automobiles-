@@ -69,6 +69,7 @@ const Orders = () => {
                                         <td className="ps-3">{++i}</td>
                                         <td>
                                             {order?.productTitle}
+                                            {order?._id}
                                         </td>
                                         <td>
                                             {order?.date}
