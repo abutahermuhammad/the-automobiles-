@@ -31,7 +31,8 @@ const TrackOrder = () => {
                             <Col lg={6} md={6} sm={12} xs={12} className="mb-5">
                                 <div className='am_register-left'>
                                     <Formik
-                                    initialValues={{orderID: "", email: user?.email}}
+                                    // initialValues={{orderID: "", email: user?.email}}
+                                    initialValues={{orderID: "", email: ""}}
                                     validate={values => {
                                         const errors = {};
 

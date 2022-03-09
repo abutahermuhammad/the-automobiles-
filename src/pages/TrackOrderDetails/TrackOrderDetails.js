@@ -13,7 +13,7 @@ const TrackOrderDetails = () => {
     const {id, email} = useParams();
 
     useEffect(()=> {
-        let url = `${process.env.REACT_APP_API_URI}/track/6228bccfc7aeee7cb95392de/abut1081@gmail.com`;
+        let url = `${process.env.REACT_APP_API_URI}/track/${id}/${email}`;
 
         fetch(url)
         .then(res=> res.json())
