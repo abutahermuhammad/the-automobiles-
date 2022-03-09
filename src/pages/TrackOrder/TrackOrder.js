@@ -13,6 +13,7 @@ const TrackOrder = () => {
 
     const trackOrderHandler = (values) => {
         console.log(values);
+        navigate(`/track-order-details/${values?.orderID}/${values?.email}`);
 
     }
 
