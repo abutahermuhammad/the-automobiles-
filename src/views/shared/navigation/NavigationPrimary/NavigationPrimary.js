@@ -12,14 +12,15 @@ const NavigationPrimary = ({title, products, loggedin, user, signoutHandler}) =>
     
         <Navbar bg="black" expand="lg"  className="am_navigation_primary shadow" variant="primary">
             <Container>
-                {/* Navbar Brand */}
-                <Navbar.Brand href="/" className="text-primary">{title}</Navbar.Brand>
 
                 {/* Navigation Menu Toggler */}
-                <Navbar.Toggle className='am_toggler' variant="primary" as={Button} aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle  className='am_toggler ms-0 me-3 text-primary' variant="outline-primary" as={Button} aria-controls="amPrimaryNav" />
+
+                {/* Navbar Brand */}
+                <Navbar.Brand href="/" className="text-primary me-auto">{title}</Navbar.Brand>
 
 
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="amPrimaryNav">
                     {/* Primary Menu */}
                     <Nav className="mx-auto">
                         <Nav.Link href="shop">Shop</Nav.Link>
@@ -32,13 +33,7 @@ const NavigationPrimary = ({title, products, loggedin, user, signoutHandler}) =>
                     </Nav>
 
                     <Nav className="ml-auto">
-                        {/* Logged out state */}
-                        { !loggedin && !user.email && (
-                            <NavDropdown align={{ lg: 'end' }} clasaName="" title={<RiUser3Fill/>}>
-                                <NavDropdown.Item href={`/login`}>Log in</NavDropdown.Item>
-                                <NavDropdown.Item href={`/register`}>Register</NavDropdown.Item>
-                            </NavDropdown>
-                        )}
+                        
 
                         {/* Logged in state */}
                         {loggedin && user.email && (
@@ -62,13 +57,23 @@ const NavigationPrimary = ({title, products, loggedin, user, signoutHandler}) =>
                                 <NavDropdown.Item onClick={() => signoutHandler()} >Log out</NavDropdown.Item>
                             </NavDropdown>
                         )}
-                            
-                        {/* Cart Dropdown */}
-                        <NavDropdown align={{ lg: 'end' }} title={<TiShoppingCart />}>
-                            <NavCartData />
-                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
+                
+                            
+                {/* Cart Dropdown */}
+                <NavDropdown align="end" title={<TiShoppingCart />}>
+                    <NavCartData />
+                </NavDropdown>
+
+                {/* Logged out state */}
+                { !loggedin && !user.email && (
+                    <NavDropdown align="end" clasaName="" title={<RiUser3Fill/>}>
+                        <NavDropdown.Item href={`/login`}>Log in</NavDropdown.Item>
+                        <NavDropdown.Item href={`/register`}>Register</NavDropdown.Item>
+                    </NavDropdown>
+                )}
+                
             </Container>
         </Navbar>
     </>

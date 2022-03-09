@@ -21,7 +21,7 @@ const CardProduct4x2 = ({title, products, cartHandler}) => {
                         {products && (
                             <Row>
                                 {products.map(item=> (
-                                    <Col key={item?._id} lg={3} md={3} sm={6} xs={6}>
+                                    <Col key={item?._id} lg={3} md={3} sm={12} xs={12}>
                                         
                                         <CardProduct item={item} cartHandler={cartHandler} />
                                     </Col>

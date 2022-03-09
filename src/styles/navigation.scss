@@ -1,6 +1,11 @@
 .am_navigation {
     .am_navigation_primary {
         padding: 12px 0;
+
+        .am_toggler {
+            border: 1px solid #f8b300;
+        }
+
         .navbar-brand {
             font-weight: 700;
         }
@@ -8,6 +13,7 @@
         .nav-item {
             &.dropdown {
                 .dropdown-toggle {
+
                     &::after {
                         display: none;
                     }
