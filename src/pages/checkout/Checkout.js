@@ -51,7 +51,7 @@ const Checkout = () => {
         .then(async data=> {
             await clearCart();
             setError(false);
-            if(data?.acknowledged === true) setSuccess(true);
+            if(data?.acknowledged === true) navigate(from)
             if(!data.status) setError(true);
         })
         .catch(()=> {
