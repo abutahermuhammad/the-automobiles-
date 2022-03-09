@@ -6,7 +6,7 @@ import DashboardSideMenu from '../../views/pages/dashboard/DashboardSideMenu';
 import Layout from '../../views/shared/layout/Layout';
 import useAuth from '../../hooks/useAuth';
 
-
+// const [loadingg, setLoadingg] = useState(true)
 const Dashboard = () => {
     let navigate = useNavigate()
     const [loading, setLoading] = useState(true)

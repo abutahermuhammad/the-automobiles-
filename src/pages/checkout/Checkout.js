@@ -35,6 +35,7 @@ const Checkout = () => {
         const url = `${process.env.REACT_APP_API_URI}/order`;
         const data = {
             date: new Date(),
+            status: "Pending",
             ...values,
             cart
         }
